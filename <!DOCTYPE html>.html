@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Points Calculator</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #ff4e50, #a00);
+            font-family: 'Arial', sans-serif;
+            color: #333;
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            margin-top: 50px;
+            max-width: 900px;
+        }
+
+        .header h1 {
+            color: #ff4e50;
+            font-weight: bold;
+            font-size: 3em;
+            margin-bottom: 0.5em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .table {
+            margin-bottom: 1rem;
+            background-color: transparent;
+        }
+
+        .table thead th {
+            vertical-align: bottom;
+            border-bottom: 2px solid #dee2e6;
+            background: linear-gradient(135deg, #ff4e50, #a00);
+            color: white;
+        }
+
+        .table tbody tr:nth-child(odd) {
+            background-color: #ffe5e5;
+        }
+
+        .table tbody tr:nth-child(even) {
+            background-color: #ffffff;
+        }
+
+        .table tbody tr:hover {
+            background-color: #ffd1d1;
+        }
+
+        .table th, .table td {
+            border: none;
+            text-align: center;
+            padding: 1rem;
+            vertical-align: middle;
+        }
+
+        .table th:first-child, .table td:first-child {
+            border-radius: 15px 0 0 15px;
+        }
+
+        .table th:last-child, .table td:last-child {
+            border-radius: 0 15px 15px 0;
+        }
+
+        .footer {
+            color: #333;
+            font-size: 1em;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .footer a {
+            color: #ff4e50;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .organized-by {
+            margin-top: 20px;
+            color: #a00;
+            font-weight: bold;
+            font-size: 1.2em;
+            text-align: left;
+        }
+
+        /* Print styles */
+        @media print {
+            .btn-print {
+                display: none;
+            }
+
+            .print-icon {
+                display: block;
+                font-size: 2em;
+                text-align: center;
+                margin-top: 20px;
+            }
+        }
+
+        .print-icon {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container my-5">
+        <div class="text-center mb-4 header">
+            <h1>Day Today Battles</h1>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Team</th>
+                        <th>Byh</th>
+                        <th>Place PTS</th>
+                        <th>Kill PTS</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td><input type="text" class="form-control" placeholder="Team Name"></td>
+                        <td><input type="number" class="form-control" placeholder="Byh"></td>
+                        <td><input type="number" class="form-control" placeholder="Place PTS" oninput="calculateTotal(this)"></td>
+                        <td><input type="number" class="form-control" placeholder="Kill PTS" oninput="calculateTotal(this)"></td>
+                        <td><input type="number" class="form-control" placeholder="Total" readonly></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td><input type="text" class="form-control" placeholder="Team Name"></td>
+                        <td><input type="number" class="form-control" placeholder="Byh"></td>
+                        <td><input type="number" class="form-control" placeholder="Place PTS" oninput="calculateTotal(this)"></td>
+                        <td><input type="number" class="form-control" placeholder="Kill PTS" oninput="calculateTotal(this)"></td>
+                        <td><input type="number" class="form-control" placeholder="Total" readonly></td>
+                    </tr>
+                    <!-- Additional rows -->
+                    <tr>
+                        <td>3</td>
+                        <td><input type="text" class="form-control" placeholder="Team Name"></td>
+                        <td><input type="number" class="form-control" placeholder="Byh"></td>
+                        <td><input type="number" class="form-control" placeholder="Place PTS" oninput="calculateTotal(this)"></td>
+                        <td><input type="number" class="form-control" placeholder="Kill PTS" oninput="calculateTotal(this)"></td>
+                        <td><input type="number" class="form-control" placeholder="Total" readonly></td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td><input type="text" class="form-control" placeholder="Team Name"></td>
+                        <td><input type="number" class="form-control" placeholder="Byh"></td>
+                        <td><input type="number" class="form-control" placeholder="Place PTS" oninput="calculateTotal(this)"></td>
+                        <td><input type="number" class="form-control" placeholder="Kill PTS" oninput="calculateTotal(this)"></td>
+                        <td><input type="number" class="form-control" placeholder="Total" readonly></td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td><input type="text" class="form-control" placeholder="Team Name"></td>
+                        <td><input type="number" class="form-control" placeholder="Byh"></td>
+                        <td><input type="number" class="form-control" placeholder="Place PTS" oninput="calculateTotal(this)"></td>
+                        <td><input type="number" class="form-control" placeholder="Kill PTS" oninput="calculateTotal(this)"></td>
+                        <td><input type="number" class="form-control" placeholder="Total" readonly></td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td><input type="text" class="form-control" placeholder="Team Name"></td>
+                        <td><input type="number" class="form-control" placeholder="Byh"></td>
+                        <td><input type="number" class="form-control" placeholder="Place PTS" oninput="calculateTotal(this)"></td>
+                        <td><input type="number" class="form-control" placeholder="Kill PTS" oninput="calculateTotal(this)"></td>
+                        <td><input type="number" class="form-control" placeholder="Total" readonly></td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td><input type="text" class="form-control" placeholder="Team Name"></td>
+                        <td><input type="number" class="form-control" placeholder="Byh"></td>
+                        <td><input type="number" class="form-control" placeholder="Place PTS" oninput="calculateTotal(this)"></td>
+                        <td><input type="number" class="form-control" placeholder="Kill PTS" oninput="calculateTotal(this)"></td>
+                        <td><input type="number" class="form-control" placeholder="Total" readonly></td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td><input type="text" class="form-control" placeholder="Team Name"></td>
+                        <td><input type="number" class="form-control" placeholder="Byh"></td>
+                        <td><input type="number" class="form-control" placeholder="Place PTS" oninput="calculateTotal(this)"></td>
+                        <td><input type="number" class="form-control" placeholder="Kill PTS" oninput="calculateTotal(this)"></td>
+                        <td><input type="number" class="form-control" placeholder="Total" readonly></td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td><input type="text" class="form-control" placeholder="Team Name"></td>
+                        <td><input type="number" class="form-control" placeholder="Byh"></td>
+                        <td><input type="number" class="form-control" placeholder="Place PTS" oninput="calculateTotal(this)"></td>
+                        <td><input type="number" class="form-control" placeholder="Kill PTS" oninput="calculateTotal(this)"></td>
+                        <td><input type="number" class="form-control" placeholder="Total" readonly></td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td><input type="text" class="form-control" placeholder="Team Name"></td>
+                        <td><input type="number" class="form-control" placeholder="Byh"></td>
+                        <td><input type="number" class="form-control" placeholder="Place PTS" oninput="calculateTotal(this)"></td>
+                        <td><input type="number" class="form-control" placeholder="Kill PTS" oninput="calculateTotal(this)"></td>
+                        <td><input type="number" class="form-control" placeholder="Total" readonly></td>
+                    </tr>
+                    <tr>
+                        <td>11</td>
+                        <td><input type="text" class="form-control" placeholder="Team Name"></td>
+                        <td><input type="number" class="form-control" placeholder="Byh"></td>
+                        <td><input type="number" class="form-control" placeholder="Place PTS" oninput="calculateTotal(this)"></td>
+                        <td><input type="number" class="form-control" placeholder="Kill PTS" oninput="calculateTotal(this)"></td>
+                        <td><input type="number" class="form-control" placeholder="Total" readonly></td>
+                    </tr>
+                    <tr>
+                        <td>12</td>
+                        <td><input type="text" class="form-control" placeholder="Team Name"></td>
+                        <td><input type="number" class="form-control" placeholder="Byh"></td>
+                        <td><input type="number" class="form-control" placeholder="Place PTS" oninput="calculateTotal(this)"></td>
+                        <td><input type="number" class="form-control" placeholder="Kill PTS" oninput="calculateTotal(this)"></td>
+                        <td><input type="number" class="form-control" placeholder="Total" readonly></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <button class="btn btn-primary mt-3 btn-print" onclick="window.print()">Print</button>
+        <div class="print-icon">
+            <i class="fa fa-print"></i>
+        </div>
+        <div class="organized-by">
+            <p>Organized by Soy</p>
+        </div>
+        <div class="footer">
+            <p>© 2024 <a href="http://www.yourwebsite.com">Day Today Battles</a>. All Rights Reserved.</p>
+        </div>
+        
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+    <script>
+        function calculateTotal(input) {
+            // Find the closest table row
+            var row = input.closest('tr');
+            // Get Place PTS and Kill PTS values
+            var placePts = row.querySelector('td:nth-child(4) input').value;
+            var killPts = row.querySelector('td:nth-child(5) input').value;
+            // Calculate Total
+            var total = parseFloat(placePts || 0) + parseFloat(killPts || 0);
+            // Set Total value
+            row.querySelector('td:nth-child(6) input').value = total;
+        }
+    </script>
+</body>
+</html>
